@@ -3,6 +3,7 @@ using Entity.Concrete;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
+using Entity.DTOs;
 
 namespace Business.Concrete
 {
@@ -28,6 +29,11 @@ namespace Business.Concrete
             
         }
 
+        public void delete(Car car)
+        {
+            _carDal.Delete(car);
+        }
+
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
@@ -43,9 +49,19 @@ namespace Business.Concrete
             return _carDal.GetAll(p=> p.DailyPrice>=min && p.DailyPrice<=max);
         }
 
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
+        }
+
         public List<Car> GetCarsByColordId(int colorId)
         {
             return _carDal.GetAll(p=> p.ColorId==colorId);
+        }
+
+        public void update(Car car)
+        {
+            _carDal.Update(car);
         }
     }
 }
